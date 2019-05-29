@@ -113,8 +113,11 @@ app.post('/delete/:id', (req, res) => {
     if (data.length > 0) {
       json = JSON.parse(data);
     }
+    let newindex = 1;
     const result = json.filter(u => {
       if (u.id !== id) {
+        u.id = newindex;
+        newindex++;
         return u;
       }
     })
@@ -128,7 +131,7 @@ app.post('/delete/:id', (req, res) => {
   });
 })
 
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 })
 
